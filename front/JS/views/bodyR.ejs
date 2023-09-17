@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="css/sample.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="imgDiv">
+        <img src="" class="img">
+    </div>
+    <div style="display: flex">
+        <p class="countNumber">1</p>
+        <p>/</p>
+        <!-- 갯수 세는 로직 구현해야 됨 -->
+        <p class="maxNumber"></p>
+    </div>
+    <div>
+        <audio src="" controls class="mp3file"></audio>
+    </div>
+    
+    <div>
+        <input type="text" name="userInput" id="userInput" onkeydown="if(event.keyCode==13) javascript:chackAnswer();" />
+    </div>
+    <button onclick="chackAnswer()">정답 확인</button>
+    <button class="nextButton" onclick="next()">다음 문제</button>
+    <div>
+        <audio src="http://localhost:3000/audio/watBi.mp3" class="watBifile"></audio>
+    </div>
+
+
+    <script>
+        let count = 1;
+        document.addEventListener('DOMContentLoaded', function(){
+
+            
+            //음악 총 갯수 받아오기
+            fetch('http://localhost:8080/getMusicLength',{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                if(!response.ok){
+                    throw new Error('http 오류: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log(data);
+                document.querySelector('.maxNumber').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('에러 발생:', erorr);
+            });
+
+
+            // 맨 처음 음악 이름 받아오기
+            fetch('http://localhost:8080/getMusicName',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(count)
+            })
+            .then(response => {
+                if(!response.ok){
+                    throw new Error('http 오류: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                const musicFile = "http://localhost:3000/music/" + data + ".mp3";
+                document.querySelector('audio').src = musicFile;
+            })
+            .catch(error => {
+                console.error('에러 발생:', erorr);
+            });
+        });
+
+        function next(){
+            //숫자 늘리기 O
+            //음악 바꾸기 O
+            //input박스 비우기 O
+            //maxNumber와 값이 같아지면 버튼 없애기 O
+            count++;
+            document.querySelector('.countNumber').textContent = count; //올라간 숫자 업데이트
+            document.querySelector('#userInput').value = ""; //input박스 비우기
+            document.querySelector('.imgDiv').style.display = 'none';
+
+            if(count == document.querySelector('.maxNumber').innerHTML){
+                document.querySelector('.nextButton').style.display = "none";
+            }
+            fetch('http://localhost:8080/getMusicName',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(count)
+            })
+            .then(response => {
+                if(!response.ok){
+                    throw new Error('http 오류: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                const musicFile = "http://localhost:3000/music/" + data + ".mp3";
+                document.querySelector('audio').src = musicFile;
+            })
+            .catch(error => {
+                console.error('에러 발생:', erorr);
+            });
+        }
+
+        function chackAnswer(){
+            //input 박스내용 백엔드로 전달하기 O
+            //받아온 값이 1이면 정답, 0이면 오답으로 처리
+            //정답이면 버튼 사라지기
+            //오답이면 ---이벤트
+            const userInput = document.querySelector('#userInput').value;
+            const dataToSend = {
+                number: count,
+                input: userInput
+            };
+
+            fetch('http://localhost:8080/checkAnswer',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSend)
+            })
+            .then(response => {
+                if(!response.ok){
+                    throw new Error('http 오류: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(data => {
+                if(data == 1){
+                    console.log('성공');
+                    document.querySelector('.img').src = "/img/sakurako.jpg";
+                    document.querySelector('.imgDiv').style.display = "block";
+                    document.querySelector('.watBifile').play();
+
+                }else if(data == 0){
+                    console.log('실패');
+                    document.querySelector('.img').src = "/img/azusa.jpg";
+                    document.querySelector('.imgDiv').style.display = "block";
+                }
+            })
+            .catch(error => {
+                console.error('에러 발생:', erorr);
+            });
+        }
+    </script>
+</body>
+</html>
