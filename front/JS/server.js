@@ -40,13 +40,17 @@ fs.readdir('public/music', (err, file) =>{
 //라우팅
 app.get('/', function(request, response){
     // response.sendFile(__dirname + '/index.html')
-    response.render('main')
+    response.render('main');
 });
 
 app.get('/quiz', function(request, response){
-    response.render('quiz')
+    response.render('quiz');
 });
 
-app.post('/backend-endpoint', function(request, response){
-    response.render('map')
+app.get('/endPage', function(request, response){
+    response.render('endPage');
 });
+
+// app.post('/backend-endpoint', function(request, response){
+//     response.render('map')
+// });
