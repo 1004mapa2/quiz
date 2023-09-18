@@ -8,34 +8,47 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="imgDiv">
-        <img src="" class="img">
-    </div>
-    <div style="display: flex">
-        <p class="countNumber">1</p>
-        <p>/</p>
-        <!-- 갯수 세는 로직 구현해야 됨 -->
-        <p class="maxNumber"></p>
-    </div>
-    <div>
-        <audio src="" controls class="mp3file"></audio>
-    </div>
+    <div class="container">
+        <div class="imgDiv">
+            <img src="/img/azusa.jpg" class="img1">
+            <div style="width: 50px"></div>
+            <img src="/img/sakurako.jpg" class="img2">
+        </div>
+
+        <div class="pageNumber">
+            <p class="countNumber">1</p>
+            <p>/</p>
+            <p class="maxNumber"></p>
+        </div>
+        <div>
+            <audio src="" controls class="mp3file"></audio>
+        </div>
     
-    <div>
-        <input type="text" name="userInput" id="userInput" onkeydown="if(event.keyCode==13) javascript:chackAnswer();" />
-    </div>
-    <button onclick="chackAnswer()">정답 확인</button>
-    <button class="nextButton" onclick="next()">다음 문제</button>
-    <div>
-        <audio src="http://localhost:3000/audio/watBi.mp3" class="watBifile"></audio>
+        <div class="inputDiv">
+            <span>답: </span>
+            <input type="text" id="userInput" onkeydown="if(event.keyCode==13) javascript:chackAnswer();" />
+        </div>
+
+        <div class="buttonDiv">
+            <div class="nextButtonDiv">
+                <button class="nextButton" onclick="next()">다음 문제</button>
+            </div>
+            <div style="width: 50px"></div>
+            <button class="answerButton" onclick="chackAnswer()">정답 확인</button>
+        </div>
+
+        <div>
+            <audio src="http://localhost:3000/audio/watBi.mp3" class="watBifile"></audio>
+            <audio src="http://localhost:3000/audio/마따끄.mp3" class="matakufile"></audio>
+        </div>
     </div>
 
 
     <script>
         let count = 1;
+        document.querySelector('.watBifile').volume = 0.5;
         document.addEventListener('DOMContentLoaded', function(){
 
-            
             //음악 총 갯수 받아오기
             fetch('http://localhost:8080/getMusicLength',{
                 method: 'GET',
@@ -89,10 +102,16 @@
             count++;
             document.querySelector('.countNumber').textContent = count; //올라간 숫자 업데이트
             document.querySelector('#userInput').value = ""; //input박스 비우기
-            document.querySelector('.imgDiv').style.display = 'none';
+            document.querySelector('.imgDiv').classList.remove('show'); //이미지 초기화
+            document.querySelector('.nextButtonDiv').classList.remove('show');
+            if(document.querySelector('.nextButton').innerHTML == "끝"){
+                마지막페이지();
+            }
 
             if(count == document.querySelector('.maxNumber').innerHTML){
-                document.querySelector('.nextButton').style.display = "none";
+                setTimeout(function(){
+                    document.querySelector('.nextButton').innerHTML = "끝";
+                }, 1000);
             }
             fetch('http://localhost:8080/getMusicName',{
                 method: 'POST',
@@ -143,19 +162,29 @@
             .then(data => {
                 if(data == 1){
                     console.log('성공');
-                    document.querySelector('.img').src = "/img/sakurako.jpg";
-                    document.querySelector('.imgDiv').style.display = "block";
+                    document.querySelector('.img2').classList.add('imgAfter');
+                    setTimeout(function(){
+                        document.querySelector('.img2').classList.remove('imgAfter');
+                    }, 2000);
+                    document.querySelector('.nextButtonDiv').classList.add('show');
                     document.querySelector('.watBifile').play();
 
                 }else if(data == 0){
                     console.log('실패');
-                    document.querySelector('.img').src = "/img/azusa.jpg";
-                    document.querySelector('.imgDiv').style.display = "block";
+                    document.querySelector('.img1').classList.add('imgAfter');
+                    setTimeout(function(){
+                        document.querySelector('.img1').classList.remove('imgAfter');
+                    }, 2000);
+                    document.querySelector('.matakufile').play();
                 }
             })
             .catch(error => {
                 console.error('에러 발생:', erorr);
             });
+        }
+
+        function 마지막페이지(){
+            window.location.href = '/endPage';
         }
     </script>
 </body>
