@@ -5,11 +5,6 @@ const ejs = require('ejs')
 const fs = require('fs')
 const fetch = require("node-fetch")
 
-
-process.on('uncaughtException', function (err) {
-    console.log(err);
-  });
-
 app.set('view engine', 'ejs')
 app.set('views', './views')
 

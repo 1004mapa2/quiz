@@ -38,8 +38,8 @@
         </div>
 
         <div>
-            <audio src="http://localhost:3000/audio/watBi.mp3" class="watBifile"></audio>
-            <audio src="http://localhost:3000/audio/마따끄.mp3" class="matakufile"></audio>
+            <audio src="/audio/watBi.mp3" class="watBifile"></audio>
+            <audio src="/audio/마따끄.mp3" class="matakufile"></audio>
         </div>
     </div>
 
@@ -51,7 +51,7 @@
 
             document.querySelector('.countNumber').textContent = count;
             //음악 총 갯수 받아오기
-            fetch('http://localhost:8080/getMusicLength',{
+            fetch('http://172.30.1.67:8080/getMusicLength',{
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@
 
 
             // 맨 처음 음악 이름 받아오기
-            fetch('http://localhost:8080/getMusicName',{
+            fetch('http://172.30.1.67:8080/getMusicName',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,7 +87,7 @@
                 return response.text();
             })
             .then(data => {
-                const musicFile = "http://localhost:3000/music/" + data + ".mp3";
+                const musicFile = "/music/" + data + ".mp3";
                 document.querySelector('audio').src = musicFile;
             })
             .catch(error => {
@@ -114,7 +114,7 @@
                     document.querySelector('.nextButton').innerHTML = "끝";
                 }, 1000);
             }
-            fetch('http://localhost:8080/getMusicName',{
+            fetch('http://172.30.1.67:8080/getMusicName',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -128,7 +128,7 @@
                 return response.text();
             })
             .then(data => {
-                const musicFile = "http://localhost:3000/music/" + data + ".mp3";
+                const musicFile = "/music/" + data + ".mp3";
                 document.querySelector('audio').src = musicFile;
             })
             .catch(error => {
@@ -147,7 +147,7 @@
                 input: userInput
             };
 
-            fetch('http://localhost:8080/checkAnswer',{
+            fetch('http://172.30.1.67:8080/checkAnswer',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
