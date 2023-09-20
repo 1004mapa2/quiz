@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/public')) //public 폴더 안에 static 파
 app.listen(port, function(){
     console.log('3000 서버 열었다')
 });
-
+console.log('dd')
 // mp3 파일들 이름 보내주기
 fs.readdir('public/music', (err, file) =>{
     const fileCount = file.length;
@@ -21,6 +21,7 @@ fs.readdir('public/music', (err, file) =>{
         count: fileCount,
         fileNameList: file
     };
+    console.log('ddd')
     fetch('http://172.30.1.67:8080/saveMusicList',{
                 method: 'POST',
                 headers: {
@@ -32,6 +33,7 @@ fs.readdir('public/music', (err, file) =>{
             .then(data => {
                 console.log('파일:', dataToSend);
                 console.log('파일 전송:', data);
+                console.log('dddd')
             })
             .catch(error => {
                 console.error('에러 발생:', err);
