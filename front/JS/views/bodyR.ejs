@@ -16,7 +16,7 @@
         </div>
 
         <div class="pageNumber">
-            <p class="countNumber">1</p>
+            <p class="countNumber"></p>
             <p>/</p>
             <p class="maxNumber"></p>
         </div>
@@ -49,6 +49,7 @@
         document.querySelector('.watBifile').volume = 0.5;
         document.addEventListener('DOMContentLoaded', function(){
 
+            document.querySelector('.countNumber').textContent = count;
             //음악 총 갯수 받아오기
             fetch('http://localhost:8080/getMusicLength',{
                 method: 'GET',

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "3.34.139.112")
 public class MyController {
 
     private final ListStore listStore;
