@@ -9,6 +9,7 @@ app.set('view engine', 'ejs')
 app.set('views', './views')
 
 app.use(express.static(__dirname + '/public')) //public 폴더 안에 static 파일을 넣겠다
+app.use(cors());
 
 app.listen(port, function(){
     console.log('3000 서버 열었다')
