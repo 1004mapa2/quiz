@@ -23,7 +23,7 @@ fs.readdir('public/music', (err, file) =>{
     console.log(file)
     console.log(fileCount)
     
-    fetch('http://172.30.1.67:8080/saveMusicList',{
+    fetch('http://13.209.3.145:8080/saveMusicList',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -51,7 +51,7 @@
 
             document.querySelector('.countNumber').textContent = count;
             //음악 총 갯수 받아오기
-            fetch('http://172.30.1.67:8080/getMusicLength',{
+            fetch('http://13.209.3.145:8080/getMusicLength',{
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@
 
 
             // 맨 처음 음악 이름 받아오기
-            fetch('http://172.30.1.67:8080/getMusicName',{
+            fetch('http://13.209.3.145:8080/getMusicName',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -114,7 +114,7 @@
                     document.querySelector('.nextButton').innerHTML = "끝";
                 }, 1000);
                 }
-                fetch('http://172.30.1.67:8080/getMusicName',{
+                fetch('http://13.209.3.145:8080//getMusicName',{
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -148,7 +148,7 @@
                 input: userInput
             };
 
-            fetch('http://172.30.1.67:8080/checkAnswer',{
+            fetch('http://13.209.3.145:8080/checkAnswer',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
