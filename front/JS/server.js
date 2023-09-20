@@ -23,7 +23,7 @@ fs.readdir('public/music', (err, file) =>{
         fileNameList: file
     };
     fetch('http://172.30.1.67:8080/saveMusicList',{
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -35,7 +35,7 @@ fs.readdir('public/music', (err, file) =>{
                 console.log('파일 전송:', data);
             })
             .catch(error => {
-                console.error('에러 발생:', error);
+                console.error('에러 발생:', err);
             });
 })
 
