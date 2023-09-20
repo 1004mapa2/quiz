@@ -20,7 +20,6 @@ fs.readdir('public/music', (err, file) =>{
         count: fileCount,
         fileNameList: file
     };
-    console.log('ddd')
     console.log(file)
     console.log(fileCount)
     
@@ -35,7 +34,6 @@ fs.readdir('public/music', (err, file) =>{
     .then(data => {
         console.log('파일:', dataToSend);
         console.log('파일 전송:', data);
-        console.log('dddd')
     })
     .catch(error => {
         console.error('에러 발생:', err);
