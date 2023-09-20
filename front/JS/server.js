@@ -14,6 +14,7 @@ app.listen(port, function(){
     console.log('3000 서버 열었다')
 });
 
+
 // mp3 파일들 이름 보내주기
 fs.readdir('public/music', (err, file) =>{
     const fileCount = file.length;
