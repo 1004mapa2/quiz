@@ -108,32 +108,33 @@
             if(document.querySelector('.nextButton').innerHTML == "끝"){
                 마지막페이지();
             }
-
-            if(count == document.querySelector('.maxNumber').innerHTML){
+            else{
+                if(count == document.querySelector('.maxNumber').innerHTML){
                 setTimeout(function(){
                     document.querySelector('.nextButton').innerHTML = "끝";
                 }, 1000);
-            }
-            fetch('http://172.30.1.67:8080/getMusicName',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(count)
-            })
-            .then(response => {
-                if(!response.ok){
-                    throw new Error('http 오류: ' + response.status);
                 }
-                return response.text();
-            })
-            .then(data => {
-                const musicFile = "/music/" + data + ".mp3";
-                document.querySelector('audio').src = musicFile;
-            })
-            .catch(error => {
-                console.error('에러 발생:', erorr);
-            });
+                fetch('http://172.30.1.67:8080/getMusicName',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(count)
+                })
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error('http 오류: ' + response.status);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    const musicFile = "/music/" + data + ".mp3";
+                    document.querySelector('audio').src = musicFile;
+                })
+                .catch(error => {
+                    console.error('에러 발생:', erorr);
+                });
+            }
         }
 
         function chackAnswer(){
