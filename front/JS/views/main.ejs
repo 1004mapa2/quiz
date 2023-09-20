@@ -17,7 +17,8 @@
     
     <script>
         console.log('로드완료');
-        function goToURL(){
+
+        document.addEventListener('DOMContentLoaded', function(){
             fs.readdir('public/music', (err, file) =>{
                 const fileCount = file.length;
                 const dataToSend = {
@@ -45,6 +46,9 @@
                         console.error('에러 발생:', err);
                     });
             })
+        })
+
+        function goToURL(){
             window.location.href = '/quiz';
         }
     </script>
