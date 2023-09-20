@@ -3,7 +3,7 @@ const app = express()
 const port = 3000
 const ejs = require('ejs')
 const fs = require('fs')
-const fetch = require("node-fetch")
+const fetch = require('node-fetch')
 
 app.set('view engine', 'ejs')
 app.set('views', './views')
