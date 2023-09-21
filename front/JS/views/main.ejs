@@ -14,10 +14,24 @@
             <button class="button" onclick="goToURL()">시작</button>
         </div>
     </div>
-    
     <script>
-        console.log('로드완료');
         function goToURL(){
+            fetch('http://localhost:8080/shuffleMusicList',{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                if(!response.ok){
+                    throw new Error('http 오류: ' + response.status);
+                }else{
+                    console.log('섞기 성공');
+                }
+            })
+            .catch(error => {
+                console.error('에러 발생:', erorr);
+            });
             window.location.href = '/quiz';
         }
     </script>
