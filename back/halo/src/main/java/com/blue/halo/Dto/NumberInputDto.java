@@ -1,9 +1,10 @@
-package com.blue.halo;
+package com.blue.halo.Dto;
 
 import lombok.Data;
 
 @Data
-public class NumberInput {
+public class NumberInputDto {
+
     private int number;
     private String input;
 }
