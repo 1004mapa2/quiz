@@ -4,7 +4,7 @@ document.querySelector('.watBifile').volume = 0.5;
 document.addEventListener('DOMContentLoaded', function(){
     document.querySelector('.countNumber').textContent = count;
     //음악 총 갯수 받아오기
-    fetch('http://localhost:8080/getMusicLength',{
+    fetch('http://43.201.19.255:8080/getMusicLength',{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     // 맨 처음 음악 이름 받아오기
-    fetch('http://localhost:8080/getMusicName',{
+    fetch('http://43.201.19.255:8080/getMusicName',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -52,21 +52,19 @@ function next(){
     //음악 바꾸기 O
     //input박스 비우기 O
     //maxNumber와 값이 같아지면 버튼 없애기 O
-    count++;
+    if(count < document.querySelector('.countNumber').textContent){
+        count++;
+    }
     document.querySelector('.countNumber').textContent = count; //올라간 숫자 업데이트
     document.querySelector('#userInput').value = ""; //input박스 비우기
-    document.querySelector('.imgDiv').classList.remove('show'); //이미지 초기화
-    document.querySelector('.nextButtonDiv').classList.remove('show');
     if(document.querySelector('.nextButton').innerHTML == "끝"){
         마지막페이지();
     }
     else{
         if(count == document.querySelector('.maxNumber').innerHTML){
-            setTimeout(function(){
             document.querySelector('.nextButton').innerHTML = "끝";
-            }, 1000);
         }
-        fetch('http://localhost:8080/getMusicName',{
+        fetch('http://43.201.19.255:8080/getMusicName',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -120,7 +118,6 @@ function chackAnswer(){
             setTimeout(function(){
                 document.querySelector('.img2').classList.remove('imgAfter');
             }, 2000);
-            document.querySelector('.nextButtonDiv').classList.add('show');
             document.querySelector('.watBifile').play();
 
         }else if(data == 0){
