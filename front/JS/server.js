@@ -16,8 +16,8 @@ app.listen(port, function(){
 
 // mp3 파일들 이름 보내주기
 fs.readdir('public/music', (err, file) =>{
-    
-    fetch('http://3.35.48.213:8080/saveMusicList',{
+    const ip = '3.35.48.213';
+    fetch('http://' + ip + ':8080/saveMusicList',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

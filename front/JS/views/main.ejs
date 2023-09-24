@@ -15,8 +15,9 @@
         </div>
     </div>
     <script>
+        const ip = '3.35.48.213';
         function goToURL(){
-            fetch('http://3.35.48.213:8080/shuffleMusicList',{
+            fetch('http://' + ip + ':8080/shuffleMusicList',{
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

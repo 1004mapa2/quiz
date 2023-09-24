@@ -1,12 +1,12 @@
 let count = 1;
-const backip = '3.35.48.213:8080';
+const backip = '3.35.48.213';
 
 document.querySelector('.watBifile').volume = 0.5;
 
 document.addEventListener('DOMContentLoaded', function(){
     document.querySelector('.countNumber').textContent = count;
     //음악 총 갯수 받아오기
-    fetch('http://' + backip + '/getMusicLength',{
+    fetch('http://' + backip + ':8080/getMusicLength',{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     // 맨 처음 음악 이름 받아오기
-    fetch('http://' + backip + '/getMusicName',{
+    fetch('http://' + backip + ':8080/getMusicName',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ function next(){
     //음악 바꾸기 O
     //input박스 비우기 O
     //maxNumber와 값이 같아지면 버튼 없애기 O
-    if(count < document.querySelector('.countNumber').textContent){
+    if(count < document.querySelector('.maxNumber').textContent){
         count++;
     }
     document.querySelector('.countNumber').textContent = count; //올라간 숫자 업데이트
@@ -66,7 +66,7 @@ function next(){
         if(count == document.querySelector('.maxNumber').innerHTML){
             document.querySelector('.nextButton').innerHTML = "끝";
         }
-        fetch('http://' + backip + '/getMusicName',{
+        fetch('http://' + backip + ':8080/getMusicName',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ function chackAnswer(){
         input: userInput
     };
 
-    fetch('http://' + backip + '/checkAnswer',{
+    fetch('http://' + backip + ':8080/checkAnswer',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
