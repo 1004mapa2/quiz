@@ -1,0 +1,18 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.15)
+
+2023-09-24 08:01:16.604  INFO 9833 --- [           main] com.blue.halo.HaloApplication            : Starting HaloApplication using Java 11.0.20.1 on ip-172-31-5-151 with PID 9833 (/home/ubuntu/quiz/back/halo/build/libs/halo-0.0.1-SNAPSHOT.jar started by ubuntu in /home/ubuntu/quiz/back/halo/build/libs)
+2023-09-24 08:01:16.613  INFO 9833 --- [           main] com.blue.halo.HaloApplication            : No active profile set, falling back to 1 default profile: "default"
+2023-09-24 08:01:19.585  INFO 9833 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-09-24 08:01:19.609  INFO 9833 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-24 08:01:19.610  INFO 9833 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-09-24 08:01:19.829  INFO 9833 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-24 08:01:19.833  INFO 9833 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3087 ms
+2023-09-24 08:01:22.119  INFO 9833 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-09-24 08:01:22.148  INFO 9833 --- [           main] com.blue.halo.HaloApplication            : Started HaloApplication in 6.84 seconds (JVM running for 8.018)
