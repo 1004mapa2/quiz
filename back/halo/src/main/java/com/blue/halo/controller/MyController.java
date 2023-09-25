@@ -35,8 +35,11 @@ public class MyController {
     public String getMusicName(@RequestBody String number){
         String musicName = listStore.getMusicName(number);
         IdWordDto id_word = mapper.getWord(Integer.parseInt(musicName));
+        System.out.println(id_word.getWord());
+        System.out.println(id_word.getId());
         Gson gson = new Gson();
         String jsonData = gson.toJson(id_word);
+        System.out.println(jsonData);
 
         return jsonData;
     }
