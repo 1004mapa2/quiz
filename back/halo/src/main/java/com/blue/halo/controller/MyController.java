@@ -37,13 +37,12 @@ public class MyController {
     public String getMusicName(@RequestBody String number){
         String musicName = listStore.getMusicName(number);
         IdWordDto id_word = mapper.getWord(Integer.parseInt(musicName));
-        log.info(id_word.getWord());
-        log.info(id_word.getWord());
         Gson gson = new Gson();
         String jsonData = gson.toJson(id_word);
-        log.info(id_word.getWord());
+        System.out.println(jsonData);
+        String a = "{\"id\":4, \"word\":\"ㅇㅇㄹ\"}";
 
-        return jsonData;
+        return a;
     }
 
     //음악 리스트 받아오기
