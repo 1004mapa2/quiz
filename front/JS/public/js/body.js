@@ -116,7 +116,7 @@ function chackAnswer(){
 }
 
 function 음악받아오기(){
-    fetch('http://' + ip + ':8080/getMusicName',{
+    fetch('http://3.35.48.213:8080/getMusicName',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
