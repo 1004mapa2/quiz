@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <link rel="stylesheet" href="css/sample.css">
+    <link rel="stylesheet" href="css/body.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container">
         <div class="imgDiv">
             <img src="/img/azusa.jpg" class="img1">
-            <div style="width: 50px"></div>
+            <img src="" class="halo">
             <img src="/img/sakurako.jpg" class="img2">
+        </div>
+
+        <div class="hintWordDiv">
+            초성:
+            <span class="hintWord"></span>
         </div>
 
         <div class="pageNumber">
@@ -20,19 +25,19 @@
             <p>/</p>
             <p class="maxNumber"></p>
         </div>
+
         <div>
             <audio src="" controls class="mp3file"></audio>
         </div>
     
         <div class="inputDiv">
-            <span>답: </span>
+            <span class="answerWord">답:</span>
             <input type="text" id="userInput" onkeydown="if(event.keyCode==13) javascript:chackAnswer();" />
         </div>
+        <button class="hintButton" onclick="showHint()">힌트 보기</button>
 
         <div class="buttonDiv">
-            <div class="nextButtonDiv show">
-                <button class="nextButton" onclick="next()">다음 문제</button>
-            </div>
+            <button class="nextButton" onclick="next()">다음 문제</button>
             <div style="width: 50px"></div>
             <button class="answerButton" onclick="chackAnswer()">정답 확인</button>
         </div>

@@ -1,3 +1,4 @@
+const ip = '3.35.48.213'
 const express = require('express')
 const app = express()
 const port = 3000
@@ -16,7 +17,6 @@ app.listen(port, function(){
 
 // mp3 파일들 이름 보내주기
 fs.readdir('public/music', (err, file) =>{
-    const ip = '3.35.48.213';
     fetch('http://' + ip + ':8080/saveMusicList',{
         method: 'POST',
         headers: {
