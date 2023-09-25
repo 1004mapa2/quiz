@@ -6,11 +6,13 @@ import com.blue.halo.repository.ListStore;
 import com.blue.halo.repository.NameMapper;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")
+@Slf4j
 public class MyController {
 
     private final ListStore listStore;
@@ -35,11 +37,11 @@ public class MyController {
     public String getMusicName(@RequestBody String number){
         String musicName = listStore.getMusicName(number);
         IdWordDto id_word = mapper.getWord(Integer.parseInt(musicName));
-        System.out.println(id_word.getWord());
-        System.out.println(id_word.getId());
+        log.info(id_word.getWord());
+        log.info(id_word.getWord());
         Gson gson = new Gson();
         String jsonData = gson.toJson(id_word);
-        System.out.println(jsonData);
+        log.info(id_word.getWord());
 
         return jsonData;
     }
