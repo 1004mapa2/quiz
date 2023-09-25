@@ -1,5 +1,6 @@
 package com.blue.halo.controller;
 
+import com.blue.halo.Dto.IdWordDto;
 import com.blue.halo.Dto.NumberInputDto;
 import com.blue.halo.repository.ListStore;
 import com.blue.halo.repository.NameMapper;
@@ -29,12 +30,15 @@ public class MyController {
         return musicLength;
     }
 
-    //음악 이름 보내기
+    //음악 이름, 힌트 초성 보내기
     @PostMapping("/getMusicName")
     public String getMusicName(@RequestBody String number){
         String musicName = listStore.getMusicName(number);
+        IdWordDto id_word = mapper.getWord(Integer.parseInt(musicName));
+        Gson gson = new Gson();
+        String jsonData = gson.toJson(id_word);
 
-        return musicName;
+        return jsonData;
     }
 
     //음악 리스트 받아오기
