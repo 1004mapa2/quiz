@@ -130,10 +130,6 @@ function 음악받아오기(){
         return response.json();
     })
     .then(data => {
-        const asd = JSON.stringify(data);
-        console.log(asd);
-        console.log(asd.id);
-        console.log(asd.word);
         console.log(data);
         console.log(data.id);
         console.log(data.word);
