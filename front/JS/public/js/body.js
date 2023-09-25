@@ -130,6 +130,9 @@ function 음악받아오기(){
         return response.json();
     })
     .then(data => {
+        console.log(data);
+        console.log(data.id);
+        console.log(data.word);
         let musicFile = "/music/" + data.id + ".mp3";
         document.querySelector('audio').src = musicFile;
         setTimeout(function(){
