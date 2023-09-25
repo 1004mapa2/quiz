@@ -40,7 +40,7 @@ public class MyController {
         Gson gson = new Gson();
         String jsonData = gson.toJson(id_word);
         System.out.println(jsonData);
-        String a = "{\"id\":4, \"word\":\"ㅇㅇㄹ\"}";
+        String a = "{\"id\":4, \"word\":\"asdf\"}";
 
         return a;
     }
