@@ -25,31 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
         console.error('에러 발생:', error);
     });
 
-    fetch('http://' + ip + ':8080/getMusicName',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(count)
-    })
-    .then(response => {
-        if(!response.ok){
-            throw new Error('http 오류: ' + response.status);
-        }
-        return response.json();
-    })
-    .then(data => {
-        let musicFile = "/music/" + data.id + ".mp3";
-        document.querySelector('audio').src = musicFile;
-        setTimeout(function(){
-            let haloFile = "/halo/" + data.id + ".png";
-            document.querySelector('.halo').src = haloFile;
-            document.querySelector('.hintWord').innerHTML = data.word;
-        }, 1000)
-    })
-    .catch(error => {
-        console.error('에러 발생:', error);
-    });
+    음악받아오기();
 });
 
 function showHint(){
@@ -154,9 +130,6 @@ function 음악받아오기(){
         return response.json();
     })
     .then(data => {
-        console.log(data);
-        console.log(data.id);
-        console.log(data.word);
         let musicFile = "/music/" + data.id + ".mp3";
         document.querySelector('audio').src = musicFile;
         setTimeout(function(){
