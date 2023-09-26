@@ -35,14 +35,13 @@ public class MyController {
     //음악 이름, 힌트 초성 보내기
     @PostMapping("/getMusicName")
     public String getMusicName(@RequestBody String number){
-//        String musicName = listStore.getMusicName(number);
-//        IdWordDto id_word = mapper.getWord(Integer.parseInt(musicName));
-//        Gson gson = new Gson();
-//        String jsonData = gson.toJson(id_word);
-//        System.out.println(jsonData);
-        String a = "{\"id\":4, \"word\":\"asdf\"}";
+        String musicName = listStore.getMusicName(number);
+        IdWordDto id_word = mapper.getWord(Integer.parseInt(musicName));
+        Gson gson = new Gson();
+        String jsonData = gson.toJson(id_word);
+//        String a = "{\"id\":4, \"word\":\"asdf\"}";
 
-        return a;
+        return jsonData;
     }
 
     //음악 리스트 받아오기
