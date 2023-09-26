@@ -39,7 +39,6 @@ public class MyController {
         IdWordDto id_word = mapper.getWord(Integer.parseInt(musicName));
         Gson gson = new Gson();
         String jsonData = gson.toJson(id_word);
-//        String a = "{\"id\":4, \"word\":\"asdf\"}";
 
         return jsonData;
     }
