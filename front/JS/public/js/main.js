@@ -1,4 +1,4 @@
-const ip = 'localhost';
+const ip = '3.35.48.213';
 
 function goToURL(){
     fetch('http://' + ip + ':8080/shuffleMusicList',{

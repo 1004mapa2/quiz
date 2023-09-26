@@ -1,4 +1,4 @@
-const ip = 'localhost'
+const ip = '3.35.48.213'
 const express = require('express')
 const app = express()
 const port = 3000

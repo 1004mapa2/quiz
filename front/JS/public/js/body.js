@@ -1,4 +1,4 @@
-const ip = 'localhost';
+const ip = '3.35.48.213';
 let count = 1;
 
 document.querySelector('.watBifile').volume = 0.5;
