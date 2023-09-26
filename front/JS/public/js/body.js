@@ -1,4 +1,4 @@
-const ip = '3.35.48.213';
+const ip = 'localhost';
 let count = 1;
 
 document.querySelector('.watBifile').volume = 0.5;
@@ -19,13 +19,41 @@ document.addEventListener('DOMContentLoaded', function(){
         return response.text();
     })
     .then(data => {
+        console.log(data);
         document.querySelector('.maxNumber').innerHTML = data;
     })
     .catch(error => {
         console.error('에러 발생:', error);
     });
 
-    음악받아오기();
+    fetch('http://' + ip + ':8080/getMusicName',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(count)
+    })
+    .then(response => {
+        if(!response.ok){
+            throw new Error('http 오류: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        console.log(data.id);
+        console.log(data.word);
+        let musicFile = "/music/" + data.id + ".mp3";
+        document.querySelector('audio').src = musicFile;
+        setTimeout(function(){
+            let haloFile = "/halo/" + data.id + ".png";
+            document.querySelector('.halo').src = haloFile;
+            document.querySelector('.hintWord').innerHTML = data.word;
+        }, 1000)
+    })
+    .catch(error => {
+        console.error('에러 발생:', error);
+    });
 });
 
 function showHint(){
@@ -116,7 +144,7 @@ function chackAnswer(){
 }
 
 function 음악받아오기(){
-    fetch('http://3.35.48.213:8080/getMusicName',{
+    fetch('http://' + ip + ':8080/getMusicName',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
