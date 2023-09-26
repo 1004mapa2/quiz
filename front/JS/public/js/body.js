@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function(){
         return response.text();
     })
     .then(data => {
-        console.log(data);
         document.querySelector('.maxNumber').innerHTML = data;
     })
     .catch(error => {
@@ -40,9 +39,6 @@ document.addEventListener('DOMContentLoaded', function(){
         return response.json();
     })
     .then(data => {
-        console.log(data);
-        console.log(data.id);
-        console.log(data.word);
         let musicFile = "/music/" + data.id + ".mp3";
         document.querySelector('audio').src = musicFile;
         setTimeout(function(){
